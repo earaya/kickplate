@@ -1,21 +1,31 @@
 #KickPlate
 
-Quickly get started on your new single-page JavaScript client.
+Quickly get started on your new single-page JavaScript application.
 
 ##What is KickPlate?
 
-Just a template so you can get to writing your app with as little effort as possible. KickPlate includes:
+KickPlate is just some boilerplate code to get you writing JS apps the right way; KickPlate relies on:
 
 * [RequireJS](http://requirejs.org/) and the RequireJS optimizer for module loading and JavaScript building.
-  *RequireJS is also used to load your templates (see below).   
-* Twitter Bootstrap, FontAwesome, and Compass for all your styling needs.
-* Hogan for simple, compiled, logic-less templates.
+  (RequireJS is also used to load your Hogan templates).   
+* [Bootstrap](http://twitter.github.com/bootstrap/), [FontAwesome](http://fortawesome.github.com/Font-Awesome/), 
+  and [Compass](http://compass-style.org/) for all your styling needs.
+* [HoganJS](http://twitter.github.com/hogan.js/) for simple, compiled, logic-less templates.
 * [TODO: choose a JS MVC framework]
+* [jQuery](http://jquery.com/) for... well, you know what jQuery is used for.
 
 ##How do I use KickPlate?
 
-Just start writing AMD modules in the `src/js folder`. I'd encourage you to use a good MVC framework, but if you're writing
-a simple application, just modules is probably enough. Your templates go in `src/js/templates`, and your sass files go in `src/sass`.
+1. Clone this repo and remove the `.git` folder, `.gitignre' and `README.md` files.
+2. Start coding!
+3. Now that you're done coding, compile everyting by running `/build/build.sh`. If you can't run shell scripts, I'd recommend
+you take a deep look at what's wrong in your life and then get a Mac. :P
+4. Now that your build is done, host the `public` folder using your preferred web server.
+[ExpressJS] is provided for development purposes.
+5. Profit!
+
+###Some more guidelines:
+[TODO: talk about why AMD rocks, when to use an MVC framework, templates, etc.]
 
 When you're done coding, just run `/build/build.sh` and then run `node express` to see the results of your hard work.
 
