@@ -16,7 +16,7 @@ KickPlate is just some boilerplate code to get you writing JS apps the right way
 
 ##How do I use KickPlate?
 
-1. Clone this repo and remove the `.git` folder, `.gitignre' and `README.md` files.
+1. Clone this repo and remove the `.git` folder, `.gitignre` and `README.md` files.
 2. Start coding!
 3. Now that you're done coding, compile everyting by running `/build/build.sh`. If you can't run shell scripts, I'd recommend
 you take a deep look at what's wrong in your life and then get a Mac. :P
