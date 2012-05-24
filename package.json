@@ -1,0 +1,9 @@
+{
+	"name": "KickPlate",
+	"description": "A simple template to get started on awesome JS web apps.",
+	"version": "0.0.1",
+	"dependencies": {
+		"express": "*",
+		"optimist": "*"
+	}
+}
