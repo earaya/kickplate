@@ -4,6 +4,7 @@
 	mainConfigFile: '../src/js/main.js',
 	optimize: 'uglify',
 	modules: [{ name: 'main' }],
-	paths: { jquery: 'empty:' }
+	paths: { 
+		jquery: 'empty:' 
+	}
 }
-	
