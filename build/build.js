@@ -5,6 +5,7 @@
 	optimize: 'uglify',
 	modules: [{ name: 'main' }],
 	paths: { 
-		jquery: 'empty:' 
+		jquery: 'empty:',
+		hogan: 'empty:'
 	}
 }
