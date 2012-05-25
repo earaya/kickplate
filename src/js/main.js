@@ -8,5 +8,5 @@ require.config({
 });
 
 require(['app'], function(App) {
-	console.dir(App);
+    console.dir(App);
 });
