@@ -1,9 +1,9 @@
-define(['marionette', 'hbs!tmpl/home'], function(Marionette, homeTmpl) {
-    console.dir(homeTmpl);
-    return Marionette.ItemView.extend({
+define(['marionette', 'text!tmpl/home.handlebars'], function(Marionette, HomeTmpl) {
+    var HomeView = Marionette.ItemView.extend({
         template: {
             type: 'handlebars',
-            template: homeTmpl
+            template: HomeTmpl
         }
     });
+    return new HomeView();
 });
