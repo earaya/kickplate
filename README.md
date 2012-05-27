@@ -4,14 +4,16 @@ Quickly get started on your new single-page JavaScript application.
 
 ##What is KickPlate?
 
-KickPlate is just some boilerplate code to get you writing JS apps the right way; KickPlate relies on:
+KickPlate is some boilerplate code to get you writing JS apps the right way; KickPlate relies on:
 
 * [RequireJS](http://requirejs.org/) and the RequireJS optimizer for module loading and JavaScript building.
-  (RequireJS is also used to load your Hogan templates).   
+  (RequireJS is also used to load your Hogan templates).
+* [Backbone](http://documentcloud.github.com/backbone/) & [Backbone.Marionette](https://github.com/derickbailey/backbone.marionette/)
+  to provide solid structure to your code.
+* [Handlebars](http://handlebarsjs.com/) for simple, compiled, templates.
+    *Note that the templates are also lazily loaded by RequireJS.
 * [Bootstrap](http://twitter.github.com/bootstrap/), [FontAwesome](http://fortawesome.github.com/Font-Awesome/), 
   and [Compass](http://compass-style.org/) for all your styling needs.
-* [HoganJS](http://twitter.github.com/hogan.js/) for simple, compiled, logic-less templates.
-* [TODO: choose a JS MVC framework]
 * [jQuery](http://jquery.com/) for... well, you know what jQuery is used for.
 
 ##How do I use KickPlate?
