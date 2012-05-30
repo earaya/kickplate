@@ -1,12 +1,12 @@
-define(['marionette', 'handlebars', 'view/home'], function(Marionette, Handlebars, HomeView) {
+define(['backbone', 'marionette', 'handlebars', 'text!AppLayout.handlebars'], function(Backbone, Marionette, Handlebars) {
     var App = new Marionette.Application();
 
     App.addRegions({
-        appRegion: '#app'
+        mainRegion: '#main'
     });
 
-    App.addInitializer(function(options){
-       App.appRegion.show(HomeView);
+    App.vent.on("layout:rendered", function(){
+        Backbone.history.start();
     });
 
     App.bind("initialize:before", function(options) {
