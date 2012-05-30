@@ -4,11 +4,11 @@ var argv = require('optimist').argv;
 var command = argv._[0];
 var environment = argv._[1] || 'dev';
 var requireJsConfig = {
-    baseUrl:'../src/js',
-    out:'../public/js/main.js',
-    mainConfigFile:'../src/js/main.js',
-    optimize:'uglify',
-    inlineText:true,
+    baseUrl: '../src/js',
+    out: '../public/js/main.js',
+    mainConfigFile: '../src/js/main.js',
+    optimize: 'uglify',
+    inlineText: true,
     name:'main',
     paths:{
         jquery: 'empty:',
@@ -24,13 +24,17 @@ var requirejs = require('requirejs');
 if(command == 'watch') {
     var watch = require('nodewatch');
     watch.add(requireJsConfig.baseUrl, true).onChange(function(file, prev, curr, action) {
-        console.log(file + 'changed. Rebuilding ' + requireJsConfig.out);
-        requirejs.optimize(requireJsConfig);
+        console.log(file + ' changed. Rebuilding ' + requireJsConfig.out);
+        requirejs.optimize(requireJsConfig, function(buildResponse) {
+            console.log(buildResponse);
+        });
         console.log('\t' + requireJsConfig.out + ' built.');
     });
     console.log('KickPlate is watching for JS changes. Press Ctrl-C to Stop.');
 } else if (command == 'build') {
-	requirejs.optimize(requireJsConfig);
+	requirejs.optimize(requireJsConfig, function(buildResponse) {
+                console.log(buildResponse);
+    });
     console.log('\t' + requireJsConfig.out + ' built.');
 } else {
     console.log('\t Usage: kickplate command [environment]');

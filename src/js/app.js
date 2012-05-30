@@ -1,17 +1,32 @@
-define(['backbone', 'marionette', 'handlebars', 'text!AppLayout.handlebars'], function(Backbone, Marionette, Handlebars) {
-    var App = new Marionette.Application();
+define([
+    'backbone',
+    'marionette',
+    'handlebars',
+    'vent/controller.vent',
+    'controller/home.router'
+], function(Backbone, Marionette, Handlebars, controllerVent, HomeRouter) {
+    var app = new Marionette.Application();
 
-    App.addRegions({
+    app.addRegions({
         mainRegion: '#main'
     });
 
-    App.vent.on("layout:rendered", function(){
+    app.addInitializer(function() {
+        controllerVent.bind('view', function(view) {
+            app.mainRegion.show(view);
+        });
+    });
+
+    // Instantiate all routers.
+    app.addInitializer(function() {
+        app.Routers = new Array();
+        app.Routers.push(new HomeRouter());
         Backbone.history.start();
     });
 
-    App.bind("initialize:before", function(options) {
+    // Change templating to Handlebars.
+    app.bind("initialize:before", function(options) {
         Marionette.TemplateCache.loadTemplate = function(template, callback) {
-            console.dir(template);
             var compiledTemplate = Handlebars.compile(template.template);
             callback.call(this, compiledTemplate);
         };
@@ -21,5 +36,5 @@ define(['backbone', 'marionette', 'handlebars', 'text!AppLayout.handlebars'], fu
         };
     });
 
-    return App;
+    return app;
 });

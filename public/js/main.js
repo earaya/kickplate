@@ -5070,6 +5070,18 @@
     });
 
 })();
+define('vent/controller.vent',['marionette'], function (Marionette) {
+    return new Marionette.EventAggregator();
+});
+
+define('model/home.model',['backbone'], function(Backbone) {
+   return Backbone.Model.extend({
+       defaults: {
+           title: 'Hello World!'
+       }
+   });
+});
+
 /**
  * @license RequireJS text 1.0.8 Copyright (c) 2010-2011, The Dojo Foundation All Rights Reserved.
  * Available via the MIT or new BSD license.
@@ -5352,32 +5364,74 @@
         return text;
     });
 }());
-define('text!tmpl/home.handlebars',[],function () { return '<h1>Hello World!</h1>';});
+define('text!tmpl/home.handlebars',[],function () { return '<h1>{{title}}</h1>';});
 
-define('view/home',['marionette', 'text!tmpl/home.handlebars'], function(Marionette, HomeTmpl) {
-    var HomeView = Marionette.ItemView.extend({
+define('view/home.view',['marionette', 'text!tmpl/home.handlebars'], function(Marionette, homeTmpl) {
+    return Marionette.ItemView.extend({
         template: {
             type: 'handlebars',
-            template: HomeTmpl
+            template: homeTmpl
+        },
+        triggers: {
+            'click h1': 'h1:click'
         }
     });
-    return new HomeView();
 });
 
-define('app',['marionette', 'handlebars', 'view/home'], function(Marionette, Handlebars, HomeView) {
-    var App = new Marionette.Application();
+define('controller/home.controller',['vent/controller.vent', 'model/home.model', 'view/home.view'], function (controllerVent, HomeModel, HomeView) {
+    return {
+        index:function () {
+            var homeView = new HomeView({ model: new HomeModel() });
+            console.dir(homeView);
+            homeView.on("h1:click", function () {
+                alert("Hello!");
+            });
+            controllerVent.trigger('view', homeView);
+        },
+        notfound:function () {
+            alert('not found triggered.');
+        }
+    };
+});
+define('controller/home.router',['marionette', 'controller/home.controller'], function(Marionette, homeController) {
+    return Marionette.AppRouter.extend({
+        controller: homeController,
+        appRoutes: {
+            '': 'index',
+            '*actions': 'notfound'
+        }
+    });
+});
 
-    App.addRegions({
-        appRegion: '#app'
+define('app',[
+    'backbone',
+    'marionette',
+    'handlebars',
+    'vent/controller.vent',
+    'controller/home.router'
+], function(Backbone, Marionette, Handlebars, controllerVent, HomeRouter) {
+    var app = new Marionette.Application();
+
+    app.addRegions({
+        mainRegion: '#main'
     });
 
-    App.addInitializer(function(options){
-       App.appRegion.show(HomeView);
+    app.addInitializer(function() {
+        controllerVent.bind('view', function(view) {
+            app.mainRegion.show(view);
+        });
     });
 
-    App.bind("initialize:before", function(options) {
+    // Instantiate all routers.
+    app.addInitializer(function() {
+        app.Routers = new Array();
+        app.Routers.push(new HomeRouter());
+        Backbone.history.start();
+    });
+
+    // Change templating to Handlebars.
+    app.bind("initialize:before", function(options) {
         Marionette.TemplateCache.loadTemplate = function(template, callback) {
-            console.dir(template);
             var compiledTemplate = Handlebars.compile(template.template);
             callback.call(this, compiledTemplate);
         };
@@ -5387,7 +5441,7 @@ define('app',['marionette', 'handlebars', 'view/home'], function(Marionette, Han
         };
     });
 
-    return App;
+    return app;
 });
 // require.js entry point.
 
@@ -5402,7 +5456,7 @@ require.config({
     }
 });
 
-require(['jquery', 'app'], function($, App) {
-    $(App.start());
+require(['jquery', 'app'], function($, application) {
+    $(application.start());
 });
 define("main", function(){});

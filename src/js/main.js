@@ -11,6 +11,6 @@ require.config({
     }
 });
 
-require(['jquery', 'app'], function($, App) {
-    $(App.start());
+require(['jquery', 'app'], function($, application) {
+    $(application.start());
 });
