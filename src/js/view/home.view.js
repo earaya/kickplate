@@ -5,7 +5,7 @@ define(['marionette', 'text!tmpl/home.handlebars'], function(Marionette, homeTmp
             template: homeTmpl
         },
         triggers: {
-            'click h1': 'h1:click'
+            'click h1': 'click:h1'
         }
     });
 });

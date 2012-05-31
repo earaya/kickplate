@@ -3,7 +3,7 @@ define(['marionette', 'controller/home.controller'], function(Marionette, homeCo
         controller: homeController,
         appRoutes: {
             '': 'index',
-            '*actions': 'notfound'
+            'about': 'about'
         }
     });
 });

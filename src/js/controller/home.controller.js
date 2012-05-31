@@ -1,14 +1,15 @@
-define(['vent/controller.vent', 'model/home.model', 'view/home.view'], function (controllerVent, HomeModel, HomeView) {
+define(['backbone', 'vent/app.vent', 'model/home.model', 'view/home.view', 'view/about.view'],
+    function (Backbone, appvent, HomeModel, HomeView, AboutView) {
     return {
         index:function () {
             var homeView = new HomeView({ model: new HomeModel() });
-            homeView.on("h1:click", function () {
-                alert("Hello!");
+            homeView.on("click:h1", function () {
+                homeView.model.sayHello()
             });
-            controllerVent.trigger('view', homeView);
+            appvent.trigger('controller:view', homeView);
         },
-        notfound:function () {
-            alert('not found triggered.');
+        about: function() {
+            appvent.trigger('controller:view', new AboutView());
         }
     };
 });

@@ -5070,7 +5070,7 @@
     });
 
 })();
-define('vent/controller.vent',['marionette'], function (Marionette) {
+define('vent/app.vent',['marionette'], function (Marionette) {
     return new Marionette.EventAggregator();
 });
 
@@ -5078,6 +5078,9 @@ define('model/home.model',['backbone'], function(Backbone) {
    return Backbone.Model.extend({
        defaults: {
            title: 'Hello World!'
+       },
+       sayHello: function () {
+           alert("Hello again!");
        }
    });
 });
@@ -5364,7 +5367,7 @@ define('model/home.model',['backbone'], function(Backbone) {
         return text;
     });
 }());
-define('text!tmpl/home.handlebars',[],function () { return '<h1>{{title}}</h1>';});
+define('text!tmpl/home.handlebars',[],function () { return '<h1>{{title}}</h1>\n<p>Welcome to KickPlate. To learn more about KickPlate, click <a href="#/about">here</a>.</p>';});
 
 define('view/home.view',['marionette', 'text!tmpl/home.handlebars'], function(Marionette, homeTmpl) {
     return Marionette.ItemView.extend({
@@ -5373,23 +5376,34 @@ define('view/home.view',['marionette', 'text!tmpl/home.handlebars'], function(Ma
             template: homeTmpl
         },
         triggers: {
-            'click h1': 'h1:click'
+            'click h1': 'click:h1'
         }
     });
 });
 
-define('controller/home.controller',['vent/controller.vent', 'model/home.model', 'view/home.view'], function (controllerVent, HomeModel, HomeView) {
+define('text!tmpl/about.handlebars',[],function () { return '<h1>About KickPlate</h1>\n<p>Written with love and care by eSteve.</p>';});
+
+define('view/about.view',['marionette', 'text!tmpl/about.handlebars'], function(Marionette, aboutTmpl) {
+   return Marionette.ItemView.extend({
+       template: {
+           type: 'handlebars',
+           template: aboutTmpl
+       }
+   })
+});
+
+define('controller/home.controller',['backbone', 'vent/app.vent', 'model/home.model', 'view/home.view', 'view/about.view'],
+    function (Backbone, appvent, HomeModel, HomeView, AboutView) {
     return {
         index:function () {
             var homeView = new HomeView({ model: new HomeModel() });
-            console.dir(homeView);
-            homeView.on("h1:click", function () {
-                alert("Hello!");
+            homeView.on("click:h1", function () {
+                homeView.model.sayHello()
             });
-            controllerVent.trigger('view', homeView);
+            appvent.trigger('controller:view', homeView);
         },
-        notfound:function () {
-            alert('not found triggered.');
+        about: function() {
+            appvent.trigger('controller:view', new AboutView());
         }
     };
 });
@@ -5398,7 +5412,7 @@ define('controller/home.router',['marionette', 'controller/home.controller'], fu
         controller: homeController,
         appRoutes: {
             '': 'index',
-            '*actions': 'notfound'
+            'about': 'about'
         }
     });
 });
@@ -5407,9 +5421,9 @@ define('app',[
     'backbone',
     'marionette',
     'handlebars',
-    'vent/controller.vent',
+    'vent/app.vent',
     'controller/home.router'
-], function(Backbone, Marionette, Handlebars, controllerVent, HomeRouter) {
+], function(Backbone, Marionette, Handlebars, appvent, HomeRouter) {
     var app = new Marionette.Application();
 
     app.addRegions({
@@ -5417,7 +5431,8 @@ define('app',[
     });
 
     app.addInitializer(function() {
-        controllerVent.bind('view', function(view) {
+        app.vent = appvent;
+        appvent.bind('controller:view', function(view) {
             app.mainRegion.show(view);
         });
     });
@@ -5426,18 +5441,27 @@ define('app',[
     app.addInitializer(function() {
         app.Routers = new Array();
         app.Routers.push(new HomeRouter());
+        // This could be moved to run after all initializers trigger.
         Backbone.history.start();
     });
 
     // Change templating to Handlebars.
     app.bind("initialize:before", function(options) {
+        Marionette.TemplateCache.get = function(template) {
+            var retTemplate;
+            retTemplate = Marionette.TemplateCache.templates[template.template];
+            if(!retTemplate) {
+                Marionette.TemplateCache.loadTemplate(template, function(compiledTemplate) {
+                    retTemplate = compiledTemplate;
+                    Marionette.TemplateCache.templates[template.template] = retTemplate;
+                });
+            }
+            return retTemplate;
+        };
+
         Marionette.TemplateCache.loadTemplate = function(template, callback) {
             var compiledTemplate = Handlebars.compile(template.template);
             callback.call(this, compiledTemplate);
-        };
-
-        Marionette.Renderer.renderTemplate = function (template, data) {
-            return template(data);
         };
     });
 

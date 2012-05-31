@@ -2,9 +2,9 @@ define([
     'backbone',
     'marionette',
     'handlebars',
-    'vent/controller.vent',
+    'vent/app.vent',
     'controller/home.router'
-], function(Backbone, Marionette, Handlebars, controllerVent, HomeRouter) {
+], function(Backbone, Marionette, Handlebars, appvent, HomeRouter) {
     var app = new Marionette.Application();
 
     app.addRegions({
@@ -12,7 +12,8 @@ define([
     });
 
     app.addInitializer(function() {
-        controllerVent.bind('view', function(view) {
+        app.vent = appvent;
+        appvent.bind('controller:view', function(view) {
             app.mainRegion.show(view);
         });
     });
@@ -21,18 +22,27 @@ define([
     app.addInitializer(function() {
         app.Routers = new Array();
         app.Routers.push(new HomeRouter());
+        // This could be moved to run after all initializers trigger.
         Backbone.history.start();
     });
 
     // Change templating to Handlebars.
     app.bind("initialize:before", function(options) {
+        Marionette.TemplateCache.get = function(template) {
+            var retTemplate;
+            retTemplate = Marionette.TemplateCache.templates[template.template];
+            if(!retTemplate) {
+                Marionette.TemplateCache.loadTemplate(template, function(compiledTemplate) {
+                    retTemplate = compiledTemplate;
+                    Marionette.TemplateCache.templates[template.template] = retTemplate;
+                });
+            }
+            return retTemplate;
+        };
+
         Marionette.TemplateCache.loadTemplate = function(template, callback) {
             var compiledTemplate = Handlebars.compile(template.template);
             callback.call(this, compiledTemplate);
-        };
-
-        Marionette.Renderer.renderTemplate = function (template, data) {
-            return template(data);
         };
     });
 
