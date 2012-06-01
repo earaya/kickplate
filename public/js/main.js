@@ -5070,21 +5070,6 @@
     });
 
 })();
-define('vent/app.vent',['marionette'], function (Marionette) {
-    return new Marionette.EventAggregator();
-});
-
-define('model/home.model',['backbone'], function(Backbone) {
-   return Backbone.Model.extend({
-       defaults: {
-           title: 'Hello World!'
-       },
-       sayHello: function () {
-           alert("Hello again!");
-       }
-   });
-});
-
 /**
  * @license RequireJS text 1.0.8 Copyright (c) 2010-2011, The Dojo Foundation All Rights Reserved.
  * Available via the MIT or new BSD license.
@@ -5367,6 +5352,44 @@ define('model/home.model',['backbone'], function(Backbone) {
         return text;
     });
 }());
+define('text!tmpl/layout.handlebars',[],function () { return '<div id="appNav" class="navbar navbar-fixed-top">\n\t<div class="navbar-inner">\n\t\t<div class="container">\n\t\t\t<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">\n\t\t\t\t<span class="icon-bar"></span>\n\t\t\t\t<span class="icon-bar"></span>\n\t\t\t\t<span class="icon-bar"></span>\n\t\t\t</a>\n\t\t\t<a class="brand">Application Name</a>\n\n\t\t\t<div class="nav-collapse">\n\t\t\t\t<ul class="nav">\n\t\t\t\t\t<li class="active"><a href="#/">Home</a></li>\n\t\t\t\t\t<li><a href="#/about">About</a></li>\n\t\t\t\t</ul>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n\n<div id="appContainer" role="main" class="container"></div>';});
+
+define('view/layout',['jquery', 'marionette', 'text!tmpl/layout.handlebars'], function($, Marionette, layoutTmpl) {
+    return Marionette.Layout.extend({
+        template: {
+            type: 'handlebars',
+            template: layoutTmpl
+        },
+        regions: {
+            appNav: '#appNav',
+            appContainer: '#appContainer'
+        },
+        events: {
+            'click li': 'updateNav'
+        },
+
+        updateNav: function(e) {
+            $(e.currentTarget).siblings('li').removeClass('active');
+            $(e.currentTarget).addClass('active');
+        }
+    });
+});
+
+define('vent/app.vent',['marionette'], function (Marionette) {
+    return new Marionette.EventAggregator();
+});
+
+define('model/home.model',['backbone'], function(Backbone) {
+   return Backbone.Model.extend({
+       defaults: {
+           title: 'Hello World!'
+       },
+       sayHello: function () {
+           alert("Hello again!");
+       }
+   });
+});
+
 define('text!tmpl/home.handlebars',[],function () { return '<h1>{{title}}</h1>\n<p>Welcome to KickPlate. To learn more about KickPlate, click <a href="#/about">here</a>.</p>';});
 
 define('view/home.view',['marionette', 'text!tmpl/home.handlebars'], function(Marionette, homeTmpl) {
@@ -5421,19 +5444,25 @@ define('app',[
     'backbone',
     'marionette',
     'handlebars',
+    'view/layout',
     'vent/app.vent',
     'controller/home.router'
-], function(Backbone, Marionette, Handlebars, appvent, HomeRouter) {
+], function(Backbone, Marionette, Handlebars, AppLayout, appvent, HomeRouter) {
     var app = new Marionette.Application();
 
     app.addRegions({
-        mainRegion: '#main'
+        mainRegion: 'body'
+    });
+
+    app.addInitializer(function() {
+       app.mainRegion.appLayout = new AppLayout();
+       app.mainRegion.show(app.mainRegion.appLayout);
     });
 
     app.addInitializer(function() {
         app.vent = appvent;
         appvent.bind('controller:view', function(view) {
-            app.mainRegion.show(view);
+            app.mainRegion.appLayout.appContainer.show(view);
         });
     });
 

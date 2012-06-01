@@ -1,2 +1,6 @@
 @import "bootstrap/bootstrap";
 @import "fontawesome/font-awesome";
+
+body {
+  padding-top: 60px; /* Make the container go to the bottom of the nav-bar. */
+}

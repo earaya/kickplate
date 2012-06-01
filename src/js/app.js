@@ -2,19 +2,25 @@ define([
     'backbone',
     'marionette',
     'handlebars',
+    'view/layout',
     'vent/app.vent',
     'controller/home.router'
-], function(Backbone, Marionette, Handlebars, appvent, HomeRouter) {
+], function(Backbone, Marionette, Handlebars, AppLayout, appvent, HomeRouter) {
     var app = new Marionette.Application();
 
     app.addRegions({
-        mainRegion: '#main'
+        mainRegion: 'body'
+    });
+
+    app.addInitializer(function() {
+       app.mainRegion.appLayout = new AppLayout();
+       app.mainRegion.show(app.mainRegion.appLayout);
     });
 
     app.addInitializer(function() {
         app.vent = appvent;
         appvent.bind('controller:view', function(view) {
-            app.mainRegion.show(view);
+            app.mainRegion.appLayout.appContainer.show(view);
         });
     });
 
