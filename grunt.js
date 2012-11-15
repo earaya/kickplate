@@ -28,8 +28,12 @@ module.exports = function(grunt) {
       },
       globals: { 
         define: true,
-        requirejs: true
+        require: true
       }
+    },
+    server: {
+      port: 4000,
+      base: './www'
     }
   });
 

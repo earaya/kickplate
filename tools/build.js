@@ -2,7 +2,8 @@
     "appDir": "../www",
     "baseUrl": "js/lib",
     "paths": {
-        "app": "../app"
+        "app": "../app",
+        "jquery": "empty:"
     },
     "dir": "../www-built",
     "modules": [
