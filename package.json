@@ -1,6 +1,11 @@
 {
+  "name": "KickPlate",
+  "version": "0.0.1",
   "amd": {},
   "volo": {
     "baseUrl": "www/js/lib"
+  },
+  "devDependencies": {
+  	"grunt-contrib-requirejs": ">= 0.3.3"
   }
 }
