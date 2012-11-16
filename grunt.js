@@ -3,6 +3,24 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
+    requirejs: {
+      compile: {
+        options: {
+          "appDir": "www",
+          "baseUrl": "js/lib",
+          "paths": {
+            "app": "../app",
+            "jquery": "empty:"
+          },
+          "dir": "www-built",
+          "modules": [
+          {
+            "name": "app"
+          }
+          ]
+        }
+      }
+    },
     lint: {
       files: ['grunt.js', 'www/js/app/*.js', 'test/**/*.js']
     },
@@ -30,14 +48,14 @@ module.exports = function(grunt) {
         define: true,
         require: true
       }
-    },
-    server: {
-      port: 4000,
-      base: './www'
     }
   });
 
+  grunt.loadNpmTasks('grunt-contrib-requirejs');
+  
   // Default task.
   grunt.registerTask('default', 'lint test');
+  // Other tasks.
+  grunt.registerTask('build', 'lint test requirejs');
 
 };

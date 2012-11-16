@@ -3,9 +3,12 @@
   "version": "0.0.1",
   "amd": {},
   "volo": {
-    "baseUrl": "www/js/lib"
+    "baseUrl": "www/js/lib",
+    "dependencies": {
+      "bootstrap": "github:twitter/bootstrap/v2.2.1"
+    }
   },
   "devDependencies": {
-  	"grunt-contrib-requirejs": ">= 0.3.3"
+    "grunt-contrib-requirejs": ">= 0.3.3"
   }
 }
