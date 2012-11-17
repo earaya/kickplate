@@ -10,14 +10,14 @@ module.exports = function(grunt) {
           "baseUrl": "js/lib",
           "paths": {
             "app": "../app",
-            "jquery": "empty:"
+            "backbone": "backbone",
+            "bootstrap": "bootstrap",
+            "jquery": "empty:",
+             // Replace underscore with lodash in build.
+            "underscore": "lodash"
           },
           "dir": "www-built",
-          "modules": [
-          {
-            "name": "app"
-          }
-          ]
+          "modules": [{"name": "app"}]
         }
       }
     },
@@ -29,7 +29,7 @@ module.exports = function(grunt) {
     },
     watch: {
       files: '<config:lint.files>',
-      tasks: 'lint test'
+      tasks: 'build'
     },
     jshint: {
       options: {
@@ -44,17 +44,19 @@ module.exports = function(grunt) {
         boss: true,
         eqnull: true
       },
-      globals: { 
+      globals: {
         define: true,
         require: true
       }
     }
   });
 
+  // Third party tasks.
   grunt.loadNpmTasks('grunt-contrib-requirejs');
-  
+
   // Default task.
   grunt.registerTask('default', 'lint test');
+
   // Other tasks.
   grunt.registerTask('build', 'lint test requirejs');
 
