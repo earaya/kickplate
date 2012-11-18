@@ -1,6 +1,4 @@
 define(function (require) {
   var $ = require('jquery');
-  //var mainTemplate = require('hbs!app/main');
-
-  $('body').append(mainTemplate({}));
+  $('body').append('<h1>KickPlate</h1>');
 });
