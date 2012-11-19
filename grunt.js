@@ -10,8 +10,6 @@ module.exports = function(grunt) {
           "baseUrl": "js/lib",
           "paths": {
             "app": "../app",
-            "backbone": "backbone",
-            "bootstrap": "bootstrap",
             "jquery": "empty:",
              // Replace underscore with lodash in build.
             "underscore": "lodash"

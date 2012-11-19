@@ -7,10 +7,8 @@ requirejs.config({
     baseUrl: 'js/lib',
     paths: {
         app: '../app',
-        backbone: 'backbone',
-        bootstrap: 'bootstrap',
+        underscore: 'lodash',
         jquery: '//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min',
-        underscore: 'lodash'
     }
 });
 
