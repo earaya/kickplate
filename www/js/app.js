@@ -8,7 +8,7 @@ requirejs.config({
     paths: {
         app: '../app',
         underscore: 'lodash',
-        jquery: '//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min',
+        jquery: '//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min'
     }
 });
 
