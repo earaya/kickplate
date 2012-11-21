@@ -11,6 +11,7 @@ requirejs.config({
         i18nprecompile: 'hbs/i18nprecompile',
         json2: 'hbs/json2',
         jquery: '//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min',
+        marionette: 'backbone.marionette',
         underscore: 'lodash'
     },
     hbs: {

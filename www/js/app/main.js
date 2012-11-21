@@ -1,9 +1,29 @@
 define(function (require) {
-  var $ = require('jquery');
+    var Backbone = require('backbone');
+    var Marionette = require('marionette');
+    var MainView = require('app/MainView');
 
-  var Backbone = require('backbone');
+    // Note: as you add more configuration to your app,
+    // you probably want to move the definition to its own file.
+    var app = new Marionette.Application();
+    app.addRegions({
+        main: '#main'
+    });
 
-  var mainTemplate = require('hbs!app/mainTemplate');
+    app.on('initialize:before', function() {
+        Marionette.TemplateCache.prototype.compileTemplate = function(template) {
+            // Templates are compiled by the hbs plugin.
+            return template;
+        };
+    });
 
-  $('body').append('<h1>KickPlate</h1>');
+    app.on('initialize:after', function() {
+        //Backbone.history.start();
+    });
+
+    app.addInitializer(function() {
+        app.main.show(new MainView());
+    });
+
+    app.start();
 });

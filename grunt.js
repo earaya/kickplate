@@ -14,6 +14,7 @@ module.exports = function(grunt) {
             i18nprecompile: 'hbs/i18nprecompile',
             json2: 'hbs/json2',
             jquery: 'empty:',
+            marionette: 'backbone.marionette',
             underscore: 'lodash'
            },
            hbs: {
