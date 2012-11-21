@@ -7,8 +7,14 @@ requirejs.config({
     baseUrl: 'js/lib',
     paths: {
         app: '../app',
-        underscore: 'lodash',
-        jquery: '//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min'
+        hbs: 'hbs/hbs',
+        i18nprecompile: 'hbs/i18nprecompile',
+        json2: 'hbs/json2',
+        jquery: '//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min',
+        underscore: 'lodash'
+    },
+    hbs: {
+        disableI18n: true
     }
 });
 
