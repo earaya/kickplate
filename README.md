@@ -44,7 +44,7 @@ First, install grunt and volo by typing the following in your command line:
 
 Once that's done, you're ready to create your app. Again, in your command line:
 
-* `volo create appName https://github.com/earaya/kickplate/archive/master.zip`
+* `volo create appName earaya/kickplate`
 
 At this point your app is ready. You can start writing code in the `www` folder.
 The cool thing about this project is that the files in `www` should work without compilation.
