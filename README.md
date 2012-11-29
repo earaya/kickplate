@@ -46,7 +46,7 @@ Once that's done, you're ready to create your app. Again, in your command line:
 
 * `volo create appName https://github.com/earaya/kickplate/archive/master.zip`
 
-At this point your app is ready. You can start writing code in the www folder.
+At this point your app is ready. You can start writing code in the `www` folder.
 The cool thing about this project is that the files in `www` should work without compilation.
 Use your favorite http server to serve those files, and you should see your app working.
 
@@ -60,7 +60,7 @@ Once grunt-contrib-requirejs has installed, you can easily build by just typing:
 
 `grunt build`
 
-When the grunt task has finished, you can start serving the www-built folder. You should compare the network traffic between the `www` and `www-built` folder to understand what the build is doing for you.
+When the grunt task has finished, you can start serving the www-built folder. You should compare the network traffic between the `www` and `www-built` folder to understand what the build is doing for you. Also, take a look at the content of the files. You'll see that your JS is uglified and minified.
 
 ## Anything else I should know?
 
