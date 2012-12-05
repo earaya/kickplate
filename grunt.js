@@ -7,21 +7,23 @@ module.exports = function(grunt) {
       compile: {
         options: {
           appDir: 'www',
-          baseUrl: 'js/lib',
+          baseUrl: 'js/app',
           paths: {
-            app: '../app',
-            hbs: 'hbs/hbs',
-            i18nprecompile: 'hbs/i18nprecompile',
-            json2: 'hbs/json2',
+            backbone: '../lib/backbone',
+            handlebars: '../lib/handlebars',
+            hbs: '../lib/hbs/hbs',
+            i18nprecompile: '../lib/hbs/i18nprecompile',
+            json2: '../lib/hbs/json2',
             jquery: 'empty:',
-            marionette: 'backbone.marionette',
-            underscore: 'lodash'
+            marionette: '../lib/backbone.marionette',
+            require: '../lib/require',
+            underscore: '../lib/lodash'
            },
            hbs: {
             disableI18n: true
           },
           dir: 'www-built',
-          modules: [{'name': 'app'}],
+          modules: [{'name': '../app'}],
           pragmasOnSave: {
             //removes Handlebars.Parser code (used to compile template strings) set
             //it to `false` if you need to parse template strings even after build

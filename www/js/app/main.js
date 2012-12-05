@@ -1,7 +1,7 @@
 define(function (require) {
     var Backbone = require('backbone');
     var Marionette = require('marionette');
-    var MainView = require('app/MainView');
+    var MainView = require('MainView');
 
     // Note: as you add more configuration to your app,
     // you probably want to move the definition to its own file.
