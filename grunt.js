@@ -66,6 +66,7 @@ module.exports = function(grunt) {
 
   // Third party tasks.
   grunt.loadNpmTasks('grunt-contrib-requirejs');
+  grunt.loadNpmTasks('grunt-volo');
 
   // Default task.
   grunt.registerTask('default', 'lint test');
