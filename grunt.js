@@ -7,35 +7,35 @@ module.exports = function(grunt) {
       compile: {
         options: {
           appDir: 'www',
-          baseUrl: 'js/app',
-          deps: ['../lib/require-css/css'],
+          baseUrl: 'js',
+          deps: ['lib/require-css/css'],
           dir: 'www-built',
           hbs: {
             disableI18n: true
           },
           map: {
             '*': {
-              less: '../lib/require-less/less',
-              css: '../lib/require-css/css'
+              less: 'lib/require-less/less',
+              css: 'lib/require-css/css'
             }
           },
           modules: [
             {
-              'name': '../app',
+              'name': 'app',
               excludeShallow: ['require-css/css-builder', 'require-less/lessc']
             }
           ],
           paths: {
-            backbone: '../lib/backbone',
-            handlebars: '../lib/handlebars',
-            hbs: '../lib/hbs/hbs',
-            i18nprecompile: '../lib/hbs/i18nprecompile',
-            json2: '../lib/hbs/json2',
+            backbone: 'lib/backbone',
+            handlebars: 'lib/handlebars',
+            hbs: 'lib/hbs/hbs',
+            i18nprecompile: 'lib/hbs/i18nprecompile',
+            json2: 'lib/hbs/json2',
             jquery: 'empty:',
-            marionette: '../lib/backbone.marionette',
-            require: '../lib/require',
-            'require-css': '../lib/require-css',
-            underscore: '../lib/lodash'
+            marionette: 'lib/backbone.marionette',
+            require: 'lib/require',
+            'require-css': 'lib/require-css',
+            underscore: 'lib/lodash'
           },
           pragmasOnSave: {
             //removes Handlebars.Parser code (used to compile template strings) set
