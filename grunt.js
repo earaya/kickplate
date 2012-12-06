@@ -6,45 +6,9 @@ module.exports = function(grunt) {
     requirejs: {
       compile: {
         options: {
-          appDir: 'www',
-          baseUrl: 'js',
-          deps: ['lib/require-css/css'],
-          dir: 'www-built',
-          hbs: {
-            disableI18n: true
-          },
-          map: {
-            '*': {
-              less: 'lib/require-less/less',
-              css: 'lib/require-css/css'
-            }
-          },
-          modules: [
-            {
-              'name': 'app',
-              excludeShallow: ['require-css/css-builder', 'require-less/lessc']
-            }
-          ],
+          mainConfigFile: 'www/js/app.js',
           paths: {
-            backbone: 'lib/backbone',
-            handlebars: 'lib/handlebars',
-            hbs: 'lib/hbs/hbs',
-            i18nprecompile: 'lib/hbs/i18nprecompile',
-            json2: 'lib/hbs/json2',
-            jquery: 'empty:',
-            marionette: 'lib/backbone.marionette',
-            require: 'lib/require',
-            'require-css': 'lib/require-css',
-            underscore: 'lib/lodash'
-          },
-          pragmasOnSave: {
-            //removes Handlebars.Parser code (used to compile template strings) set
-            //it to `false` if you need to parse template strings even after build
-            excludeHbsParser : true,
-            // kills the entire plugin set once it's built.
-            excludeHbs: true,
-            // removes i18n precompiler, handlebars and json2
-            excludeAfterBuild: true
+            jquery: 'empty:'
           }
         }
       }
