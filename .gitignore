@@ -9,3 +9,4 @@ www/js/lib/handlebars.js
 www/js/lib/jquery.js
 www/js/lib/lodash.js
 www/js/lib/underscore.js
+www/js/lib/require-*

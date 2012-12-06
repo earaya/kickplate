@@ -8,6 +8,23 @@ module.exports = function(grunt) {
         options: {
           appDir: 'www',
           baseUrl: 'js/app',
+          deps: ['../lib/require-css/css'],
+          dir: 'www-built',
+          hbs: {
+            disableI18n: true
+          },
+          map: {
+            '*': {
+              less: '../lib/require-less/less',
+              css: '../lib/require-css/css'
+            }
+          },
+          modules: [
+            {
+              'name': '../app',
+              excludeShallow: ['require-css/css-builder', 'require-less/lessc']
+            }
+          ],
           paths: {
             backbone: '../lib/backbone',
             handlebars: '../lib/handlebars',
@@ -17,13 +34,9 @@ module.exports = function(grunt) {
             jquery: 'empty:',
             marionette: '../lib/backbone.marionette',
             require: '../lib/require',
+            'require-css': '../lib/require-css',
             underscore: '../lib/lodash'
-           },
-           hbs: {
-            disableI18n: true
           },
-          dir: 'www-built',
-          modules: [{'name': '../app'}],
           pragmasOnSave: {
             //removes Handlebars.Parser code (used to compile template strings) set
             //it to `false` if you need to parse template strings even after build
