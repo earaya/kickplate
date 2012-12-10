@@ -15,6 +15,8 @@ This project really wouldn't exist if it wasn't for these excellent products:
 * Handlebars
 * [RequireJs](http://requirejs.org) - Honestly, the best thing that's happened to JS in the browser.
 * [RequireJs Handlebars Plugin](https://github.com/SlexAxton/require-handlebars-plugin) - This plugin is fantastic: it loads and pre-compiles your handlebars templates.
+* [Less](http://lesscss.org/) - Because it's a JS preprocessor. And when you're running in the browser, that matters.
+* [require-less](https://github.com/guybedford/require-less) - To optimze and require your styles.
 
 ### Tools
 

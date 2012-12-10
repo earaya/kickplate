@@ -1,0 +1,5 @@
+/* TEAM */
+Developer: Esteban Araya.
+
+/* THANKS */
+This is just some boilerplate code. So a HUGE thanks to all the people that make the excellent products combined on this projects. Please take a look at the README on github for more info.
