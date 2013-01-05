@@ -1,5 +1,7 @@
 build
 node_modules
+src/www/css
+.sass-cache
 
 // Managed dependencies. Safe to ignore.
 // DO NOT IGNORE: require.js, bootsrap/, and hbs/ as these are not managed by volo yet.

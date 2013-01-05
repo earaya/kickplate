@@ -3,6 +3,12 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
+    compass: {
+      dev: {
+        src: 'src/scss/',
+        dest: 'src/www/css',
+      },
+    },
     requirejs: {
       compile: {
         options: {
@@ -14,7 +20,7 @@ module.exports = function(grunt) {
       }
     },
     lint: {
-      files: ['grunt.js', 'www/js/app/*.js', 'test/**/*.js']
+      files: ['grunt.js', 'src/www/**/*.js', 'test/**/*.js']
     },
     test: {
       files: ['test/**/*.js']
@@ -44,6 +50,7 @@ module.exports = function(grunt) {
   });
 
   // Third party tasks.
+  grunt.loadNpmTasks('grunt-compass');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-volo');
 

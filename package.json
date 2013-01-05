@@ -13,6 +13,7 @@
     }
   },
   "devDependencies": {
+    "grunt-compass": ">= 0.3.6",
     "grunt-contrib-requirejs": ">= 0.3.3",
     "grunt-volo": "0.0.1"
   }
