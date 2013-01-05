@@ -1,7 +1,7 @@
 requirejs.config({
   appDir: '../',
   baseUrl: 'js',
-  dir: '../../www-built',
+  dir: '../../../build/www',
   hbs: {
     disableI18n: true
   },

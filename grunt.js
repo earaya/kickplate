@@ -6,7 +6,7 @@ module.exports = function(grunt) {
     requirejs: {
       compile: {
         options: {
-          mainConfigFile: 'www/js/app.main.js',
+          mainConfigFile: 'src/www/js/app.main.js',
           paths: {
             jquery: 'empty:'
           }

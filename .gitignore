@@ -1,11 +1,11 @@
-www-built
+build
 node_modules
 
 // Managed dependencies. Safe to ignore.
 // DO NOT IGNORE: require.js, bootsrap/, and hbs/ as these are not managed by volo yet.
 
-www/js/lib/backbone.js
-www/js/lib/handlebars.js
-www/js/lib/jquery.js
-www/js/lib/lodash.js
-www/js/lib/underscore.js
+backbone.js
+handlebars.js
+jquery.js
+lodash.js
+underscore.js
