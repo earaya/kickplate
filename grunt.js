@@ -6,8 +6,8 @@ module.exports = function(grunt) {
     compass: {
       dev: {
         src: 'src/scss/',
-        dest: 'src/www/css',
-      },
+        dest: 'src/www/css'
+      }
     },
     requirejs: {
       compile: {
@@ -20,7 +20,7 @@ module.exports = function(grunt) {
       }
     },
     lint: {
-      files: ['grunt.js', 'src/www/**/*.js', 'test/**/*.js']
+      files: ['grunt.js', 'src/www/app/**/*.js', 'test/**/*.js']
     },
     test: {
       files: ['test/**/*.js']
@@ -29,24 +29,7 @@ module.exports = function(grunt) {
       files: '<config:lint.files>',
       tasks: 'build'
     },
-    jshint: {
-      options: {
-        curly: true,
-        eqeqeq: true,
-        immed: true,
-        latedef: true,
-        newcap: true,
-        noarg: true,
-        sub: true,
-        undef: true,
-        boss: true,
-        eqnull: true
-      },
-      globals: {
-        define: true,
-        require: true
-      }
-    }
+    jshint: grunt.file.readJSON('jshint.json')
   });
 
   // Third party tasks.
