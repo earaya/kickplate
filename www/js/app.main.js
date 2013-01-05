@@ -1,22 +1,13 @@
-// For any third party dependencies, like jQuery, place them in the lib folder.
-
 requirejs.config({
-  //appDir: 'www',
-  //baseUrl: 'js',
-  dir: 'www-built',
+  appDir: '../',
+  baseUrl: 'js',
+  dir: '../../www-built',
   hbs: {
     disableI18n: true
   },
-  map: {
-    '*': {
-      less: 'lib/require-less/less',
-      css: 'lib/require-css/css'
-    }
-  },
   modules: [
     {
-      'name': 'app',
-      excludeShallow: ['require-css/css-builder', 'require-less/lessc']
+      'name': 'app.main',
     }
   ],
   paths: {
@@ -26,10 +17,8 @@ requirejs.config({
     i18nprecompile: 'lib/hbs/i18nprecompile',
     json2: 'lib/hbs/json2',
     jquery: '//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min',
-    less: 'lib/require-less/less',
     marionette: 'lib/backbone.marionette',
     require: 'lib/require',
-    'require-css': 'lib/require-css',
     underscore: 'lib/lodash'
   },
   pragmasOnSave: {
