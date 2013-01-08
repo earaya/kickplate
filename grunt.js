@@ -11,7 +11,7 @@ module.exports = function(grunt) {
       prod: {
         src: 'src/scss/',
         dest: 'src/www/css',
-        outputsytle: 'compressed',
+        outputstyle: 'compressed',
         linecomments: false,
         forcecompile: true
       }
