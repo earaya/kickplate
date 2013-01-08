@@ -7,7 +7,7 @@ define(function (require) {
     // you probably want to move the definition to its own file.
     var app = new Marionette.Application();
     app.addRegions({
-        main: '#main'
+        body: 'body'
     });
 
     app.on('initialize:before', function() {
@@ -22,7 +22,7 @@ define(function (require) {
     });
 
     app.addInitializer(function() {
-        app.main.show(new MainView());
+        app.body.show(new MainView());
     });
 
     app.start();
