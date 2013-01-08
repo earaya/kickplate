@@ -7,6 +7,13 @@ module.exports = function(grunt) {
       dev: {
         src: 'src/scss/',
         dest: 'src/www/css'
+      },
+      prod: {
+        src: 'src/scss/',
+        dest: 'src/www/css',
+        outputsytle: 'compressed',
+        linecomments: false,
+        forcecompile: true
       }
     },
     requirejs: {
@@ -20,14 +27,14 @@ module.exports = function(grunt) {
       }
     },
     lint: {
-      files: ['grunt.js', 'src/www/app/**/*.js', 'test/**/*.js']
+      files: ['grunt.js', 'src/www/js/app/**/*.js', 'test/**/*.js']
     },
     test: {
       files: ['test/**/*.js']
     },
     watch: {
-      files: '<config:lint.files>',
-      tasks: 'build'
+      files: ['<config:lint.files>', 'src/scss/*.scss'],
+      tasks: ['lint', 'compass']
     },
     jshint: grunt.file.readJSON('jshint.json')
   });
@@ -41,6 +48,6 @@ module.exports = function(grunt) {
   grunt.registerTask('default', 'lint test');
 
   // Other tasks.
-  grunt.registerTask('build', 'lint test requirejs');
+  grunt.registerTask('build', 'lint test compass:prod requirejs');
 
 };
