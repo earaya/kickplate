@@ -11,15 +11,15 @@ requirejs.config({
     }
   ],
   paths: {
-    backbone: 'lib/backbone',
-    handlebars: 'lib/handlebars',
-    hbs: 'lib/hbs/hbs',
-    i18nprecompile: 'lib/hbs/i18nprecompile',
-    json2: 'lib/hbs/json2',
+    backbone: 'vendor/backbone',
+    handlebars: 'vendor/handlebars',
+    hbs: 'vendor/hbs/hbs',
+    i18nprecompile: 'vendor/hbs/i18nprecompile',
+    json2: 'vendor/hbs/json2',
     jquery: '//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min',
-    marionette: 'lib/backbone.marionette',
-    require: 'lib/require',
-    underscore: 'lib/lodash'
+    marionette: 'vendor/backbone.marionette',
+    require: 'vendor/require',
+    underscore: 'vendor/lodash'
   },
   pragmasOnSave: {
     //removes Handlebars.Parser code (used to compile template strings) set

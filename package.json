@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "amd": {},
   "volo": {
-    "baseUrl": "src/www/js/lib",
+    "baseUrl": "src/www/js/vendor",
     "dependencies": {
       "lodash": "github:bestiejs/lodash/v0.9.2",
       "underscore": "github:amdjs/underscore/1.4.1",
