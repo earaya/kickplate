@@ -4,7 +4,7 @@ src/www/css
 .sass-cache
 
 // Managed dependencies. Safe to ignore.
-// DO NOT IGNORE: require.js, bootsrap/, and hbs/ as these are not managed by volo yet.
+// DO NOT IGNORE: require.js, bootsrap/, backbone.marionette, and hbs/ as these are not managed by volo yet.
 
 backbone.js
 handlebars.js

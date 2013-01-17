@@ -1,8 +1,8 @@
 # KickPlate
 
-A volo/grunt boilerplate project to help you get started writing awesome JS apps in the browser.
+A volo/grunt boilerplate project to get you started writing awesome JS apps in the browser.
 
-## So, what's included?
+## What's included?
 
 This project really wouldn't exist if it wasn't for these excellent products:
 
@@ -15,31 +15,28 @@ This project really wouldn't exist if it wasn't for these excellent products:
 * Handlebars
 * [RequireJs](http://requirejs.org) - Honestly, the best thing that's happened to JS in the browser.
 * [RequireJs Handlebars Plugin](https://github.com/SlexAxton/require-handlebars-plugin) - This plugin is fantastic: it loads and pre-compiles your handlebars templates.
-* [Less](http://lesscss.org/) - Because it's a JS preprocessor. And when you're running in the browser, that matters.
-* [require-less](https://github.com/guybedford/require-less) - To optimze and require your styles.
 
 ### Tools
 
 * grunt
-* volo
+* compass (through grunt)
 
 ## Project setup
 
 This web project has the following setup:
+* src/
+    * scss/ - scss styles. compass will build these into `src/www/css`
+    * www/ - the web assets for the project
+        * index.html - the entry point into the app.
+        * js/
+            * app.main.js - the top-level config script used by index.html
+            * app/ - the directory to store project-specific scripts.
+            * vender/ - the directory to hold third party scripts.
 
-* www/ - the web assets for the project
-    * index.html - the entry point into the app.
-    * js/
-        * app.js - the top-level config script used by index.html
-        * app/ - the directory to store project-specific scripts.
-        * lib/ - the directory to hold third party scripts.
 
+## How do I use this?
 
-## And, how do I use this?
-
-To get going you'll need to:
-
-First, install grunt and volo by typing the following in your command line:
+It should be super simple. Assumng you alredy have npm, just:
 
 1. `npm install grunt -g`
 2. `npm install volo -g`
@@ -48,21 +45,24 @@ Once that's done, you're ready to create your app. Again, in your command line:
 
 * `volo create appName earaya/kickplate`
 
-At this point your app is ready. You can start writing code in the `www` folder.
-The cool thing about this project is that the files in `www` should work without compilation.
-Use your favorite http server to serve those files, and you should see your app working.
+Then enter your app's directory and:
 
-## But how do I build my app then?
+1. `npm install`
+2. `grunt volo:install`
+
+This will pull all your dependencies.
+
+At this point your app is ready. You can start writing code in the `src/www` folder.
+
+The cool thing about this project is that you can work in and serve the `www` files without a compilation step. Your styless will need to be pre-processed, however, so `grunt watch` will take care of that.
+
+## How do I build my app when I'm done developing?
 
 In your app folder, type:
 
-`npm install`
-
-Once grunt-contrib-requirejs has installed, you can easily build by just typing:
-
 `grunt build`
 
-When the grunt task has finished, you can start serving the www-built folder. You should compare the network traffic between the `www` and `www-built` folder to understand what the build is doing for you. Also, take a look at the content of the files. You'll see that your JS is uglified and minified.
+When the grunt task has finished, you can start serving `build\www` folder. You should compare the network traffic between the `src/www` and `build/www` folder to understand what the build is doing for you. Also, take a look at the content of the files. You'll see that your JS is uglified and minified.
 
 ## Anything else I should know?
 
